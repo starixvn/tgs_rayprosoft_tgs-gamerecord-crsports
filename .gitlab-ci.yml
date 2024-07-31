@@ -4,9 +4,9 @@ include:
     file: GitLab/Templates/gitlab-job-templates.yml
 
 variables:
-  ImageName: pgtgs/game-gamerecord-crsports
-  TgsSettingKey: game-gamerecord-crsports
-  HelmTemplateFolderName: game-gamerecord-crsports
+  ImageName: pgtgs/game-gamerecord-cr
+  TgsSettingKey: game-gamerecord-cr
+  HelmTemplateFolderName: game-gamerecord-cr
   BuildCacheKey: Tgs.GameRecord.CRSports.$CI_PIPELINE_IID
 
 stages:

@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "game-gamerecord-crsports.fullname" . }}
+  name: {{ include "game-gamerecord-cr.fullname" . }}
   labels:
-    {{- include "game-gamerecord-crsports.labels" . | nindent 4 }}
+    {{- include "game-gamerecord-cr.labels" . | nindent 4 }}
   annotations:
     reloader.stakater.com/auto: "true"
 spec:
@@ -12,7 +12,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "game-gamerecord-crsports.selectorLabels" . | nindent 6 }}
+      {{- include "game-gamerecord-cr.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -20,13 +20,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "game-gamerecord-crsports.selectorLabels" . | nindent 8 }}
+        {{- include "game-gamerecord-cr.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "game-gamerecord-crsports.serviceAccountName" . }}
+      serviceAccountName: {{ include "game-gamerecord-cr.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: OTEL_SERVICE_NAME
-              value: Game-GameRecord-CRSports({{ .Release.Namespace }})
+              value: Game-gamerecord-cr({{ .Release.Namespace }})
             - name: NODE_IP
               valueFrom:
                 fieldRef:
@@ -116,7 +116,7 @@ spec:
       volumes:
         - name: appsettings
           configMap:
-            name: configmap-{{ include "game-gamerecord-crsports.fullname" . }}
+            name: configmap-{{ include "game-gamerecord-cr.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

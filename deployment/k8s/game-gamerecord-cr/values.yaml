@@ -1,19 +1,19 @@
-# Default values for game-gamerecord-crsports.
+# Default values for game-gamerecord-cr.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: pgtgs/game-gamerecord-crsports
+  repository: pgtgs/game-gamerecord-cr
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets:
   - name: dockerhub
-nameOverride: "game-gamerecord-crsports"
-fullnameOverride: "game-gamerecord-crsports"
+nameOverride: "game-gamerecord-cr"
+fullnameOverride: "game-gamerecord-cr"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -117,5 +117,5 @@ affinity:
         - key: app
           operator: In
           values:
-          - game-gamerecord-crsports
+          - game-gamerecord-cr
       topologyKey: kubernetes.io/hostname
