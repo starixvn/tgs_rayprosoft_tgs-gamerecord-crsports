@@ -71,7 +71,8 @@ deploy-staging:
     replica: 1
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
-    ingressEnabled: false
+    ingressEnabled: true
+    domain: game-gamerecord-cr.rpgp.cc
   environment:
     name: service-staging
   stage: deploy-staging
@@ -88,6 +89,7 @@ deploy-staging:
   when: manual
   script:
     - deploy_k8s $TgsSettingKey $HelmTemplateFolderName $namespace
+    - create_dns 'prod' 'game-gamerecord-cr'
 
 deploy-prod:
   extends: .deploy-k8s-template
@@ -99,6 +101,7 @@ deploy-prod:
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
     ingressEnabled: true
+    domain: game-gamerecord-cr.srvptt.com
   environment:
     name: service-prod
   stage: deploy-prod
