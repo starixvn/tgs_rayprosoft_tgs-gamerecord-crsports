@@ -72,7 +72,7 @@ deploy-staging:
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
     ingressEnabled: true
-    domain: game-gamerecord-cr.rpgp.cc
+    domain: ${TgsSettingKey}.rpgp.cc
   environment:
     name: service-staging
   stage: deploy-staging
