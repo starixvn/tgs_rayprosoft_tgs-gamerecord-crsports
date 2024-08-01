@@ -1,0 +1,39 @@
+﻿using System.Text.Json;
+using Hangfire;
+using Hangfire.Storage;
+using Microsoft.Extensions.Logging;
+using Tgs.ServiceUtility;
+
+namespace Tgs.GameRecord.CRSports.Core.JobApplicationServices;
+
+internal class JobCheckCommandService(
+	ILogger<JobCheckCommandService> logger,
+	ICommandService<JobInitCommand> service) : ICommandService<JobCheckCommand>
+{
+	public ValueTask ExecuteAsync(JobCheckCommand command, CancellationToken cancellationToken = default)
+	{
+		using var connection = JobStorage.Current.GetConnection();
+		if (connection.GetRecurringJobs().Count == 0)
+		{
+			logger.LogError("{logError}",
+				JsonSerializer.Serialize(new
+				{
+					LogOn = DateTime.Now.ToString("u"),
+					Message = "檢查遊戲廠商排程未啟動，進行重置。"
+				}));
+			return service
+				.ExecuteAsync(
+				command: new(),
+				cancellationToken: cancellationToken);
+		}
+
+		logger.LogWarning("{logWarning}",
+			JsonSerializer.Serialize(new
+			{
+				LogOn = DateTime.Now.ToString("u"),
+				Message = $"檢查遊戲廠商排程有啟動，數量({connection.GetRecurringJobs().Count})。"
+			}));
+
+		return ValueTask.CompletedTask;
+	}
+}
