@@ -2,9 +2,6 @@ include:
   - project: rayprosoft/tgs-ci-scripts
     ref: main
     file: GitLab/Templates/gitlab-job-templates.yml
-  - project: inwoker/tgs/tgs-gitlab-ci-jobs
-    ref: main
-    file: '/jobs/.create_dns.yaml'
 
 variables:
   ImageName: pgtgs/game-gamerecord-cr
