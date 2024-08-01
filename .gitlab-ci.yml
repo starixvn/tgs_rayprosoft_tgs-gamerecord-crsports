@@ -89,7 +89,7 @@ deploy-staging:
   when: manual
   script:
     - deploy_k8s $TgsSettingKey $HelmTemplateFolderName $namespace
-    - create_dns 'staging' 'game-gamerecord-cr'
+    - create_dns 'staging' $TgsSettingKey
 
 deploy-prod:
   extends: .deploy-k8s-template
@@ -101,7 +101,7 @@ deploy-prod:
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
     ingressEnabled: true
-    domain: game-gamerecord-cr.srvptt.com
+    domain: "${TgsSettingKey}.srvptt.com"
   environment:
     name: service-prod
   stage: deploy-prod
@@ -118,4 +118,4 @@ deploy-prod:
   when: manual
   script:
     - deploy_k8s $TgsSettingKey $HelmTemplateFolderName $namespace
-    - create_dns 'prod' 'game-gamerecord-cr'
+    - create_dns 'prod' ${TgsSettingKey}
