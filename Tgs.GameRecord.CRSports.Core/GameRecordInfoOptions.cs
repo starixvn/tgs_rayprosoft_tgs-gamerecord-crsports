@@ -8,9 +8,9 @@ public record class GameRecordInfoOptions
 
 	public string GameExternalId { get; set; } = default!;
 
-	public string HangfirePrefix { get; set; } = "gamerecord-cr_sports-hangfire:";
+	public string HangfirePrefix { get; set; } = "gamerecord-cr-hangfire:";
 
-	public string HangfireLocking { get; set; } = "gamerecord-cr_sports-locking:";
+	public string HangfireLocking { get; set; } = "gamerecord-cr-locking:";
 
 	public double IntervalMinutes { get; init; } = 10;
 
