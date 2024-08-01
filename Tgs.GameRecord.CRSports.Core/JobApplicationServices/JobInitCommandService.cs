@@ -24,7 +24,7 @@ internal class JobInitCommandService(
 
 	private readonly RecurringJobOptions _recurringJobOptions = new()
 	{
-		TimeZone = TimeZoneInfo.CreateCustomTimeZone(id: "eastern time", baseUtcOffset: TimeSpan.FromHours(-4), "eastern time", "eastern time")
+		TimeZone = TimeZoneInfo.FindSystemTimeZoneById(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "China Standard Time" : "Asia/Shanghai")
 	};
 
 	public async ValueTask ExecuteAsync(JobInitCommand command, CancellationToken cancellationToken = default)
