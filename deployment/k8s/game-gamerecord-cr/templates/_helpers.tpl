@@ -52,7 +52,7 @@ app: {{ include "game-gamerecord-cr.name" . }}
 tgs.kind: game
 tgs.game.kind: gamerecord
 tgs.gamerecord.kind: service
-tgs.gameprovider.kind: crsports
+tgs.gameprovider.kind: cr
 {{- end }}
 
 {{/*
