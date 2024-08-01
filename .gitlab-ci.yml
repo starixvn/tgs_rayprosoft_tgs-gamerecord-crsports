@@ -44,6 +44,7 @@ deploy-dev:
     replica: 1
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
+    ingressEnabled: false
   environment:
     name: service-dev
   stage: deploy-dev
@@ -70,6 +71,7 @@ deploy-staging:
     replica: 1
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
+    ingressEnabled: false
   environment:
     name: service-staging
   stage: deploy-staging
@@ -96,6 +98,7 @@ deploy-prod:
     replica: 1
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
+    ingressEnabled: true
   environment:
     name: service-prod
   stage: deploy-prod
