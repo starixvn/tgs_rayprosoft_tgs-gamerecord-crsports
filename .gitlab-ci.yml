@@ -89,7 +89,7 @@ deploy-staging:
   when: manual
   script:
     - deploy_k8s $TgsSettingKey $HelmTemplateFolderName $namespace
-    - create_dns 'prod' 'game-gamerecord-cr'
+    - create_dns 'staging' 'game-gamerecord-cr'
 
 deploy-prod:
   extends: .deploy-k8s-template
