@@ -115,4 +115,4 @@ deploy-prod:
   when: manual
   script:
     - deploy_k8s $TgsSettingKey $HelmTemplateFolderName $namespace
-    - create 'prod' 'game-gamerecord-cr'
+    - create_dns 'prod' 'game-gamerecord-cr'
