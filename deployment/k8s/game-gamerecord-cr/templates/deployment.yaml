@@ -37,7 +37,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: OTEL_SERVICE_NAME
-              value: Game-gamerecord-cr({{ .Release.Namespace }})
+              value: Game-GameRecord-CR({{ .Release.Namespace }})
             - name: NODE_IP
               valueFrom:
                 fieldRef:
