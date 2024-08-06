@@ -71,8 +71,7 @@ deploy-staging:
     replica: 1
     DedicatedKey: dedicated_game
     NodeSelectorKey: node-selector_game
-    ingressEnabled: true
-    domain: ${TgsSettingKey}.rpgp.cc
+    ingressEnabled: false
   environment:
     name: service-staging
   stage: deploy-staging
