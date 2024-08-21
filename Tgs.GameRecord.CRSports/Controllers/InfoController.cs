@@ -13,8 +13,9 @@ public class InfoController : ControllerBase
 {
 	[HttpGet]
 	public async Task<object> GetAsync(
-		[FromServices] IWebHostEnvironment hostingEnvironment,
-		[FromServices] IOptions<GameRecordInfoOptions> gameRecordInfoOptions)
+		[FromServices] IWebHostEnvironment webHostEnvironment,
+		[FromServices] IOptions<GameRecordInfoOptions> gameRecordInfoOptions,
+		[FromServices] IOptions<PolicySettingsOptions> policySettingsOptions)
 	{
 		var hostName = Dns.GetHostName();
 		var hostEntry = await Dns.GetHostEntryAsync(hostName).ConfigureAwait(false);
@@ -26,11 +27,12 @@ public class InfoController : ControllerBase
 			Environment.MachineName,
 			HostName = hostName,
 			HostIp = hostIp?.ToString() ?? string.Empty,
-			Environment = hostingEnvironment.EnvironmentName,
+			Environment = webHostEnvironment.EnvironmentName,
 			OsVersion = $"{Environment.OSVersion}",
 			Version = Assembly.GetExecutingAssembly().GetName().Version?.ToString(),
 			ProcessCount = Environment.ProcessorCount,
-			GameRecordInfoOptions = gameRecordInfoOptions.Value
+			GameRecordInfoOptions = gameRecordInfoOptions.Value,
+			PolicySettingsOptions = policySettingsOptions.Value
 		};
 	}
 }

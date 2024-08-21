@@ -8,17 +8,9 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class ServiceCollectionExtensions
 {
-	public static IServiceCollection AddGameRecordCore(
-		this IServiceCollection services,
-		Action<GameCommandClientOptions, IServiceProvider> gameCommandClientOptions,
-		Action<GameInterfaceCRSportsClientOptions, IServiceProvider> gameInterfaceCRSportsClientOptions)
+	public static IServiceCollection AddGameRecordCore(this IServiceCollection services)
 		=> services
-		.RegisterAllServiceUtilityTypes(
-			Assembly.GetExecutingAssembly(),
-			ServiceLifetime.Transient)
-		.AddGameCommandClient(gameCommandClientOptions)
-		.AddGameInterfaceCRSportsClient(gameInterfaceCRSportsClientOptions)
+		.RegisterAllServiceUtilityTypes(Assembly.GetExecutingAssembly(), ServiceLifetime.Transient)
 		.AddSingleton(TimeProvider.System)
-		.AddSingleton<IPullRecordDispatcher, PullRecordDispatcher>()
-		.AddTransient<IHangfireUtensil, HangfireUtensil>();
+		.AddSingleton<IPullRecordDispatcher, PullRecordDispatcher>();
 }
