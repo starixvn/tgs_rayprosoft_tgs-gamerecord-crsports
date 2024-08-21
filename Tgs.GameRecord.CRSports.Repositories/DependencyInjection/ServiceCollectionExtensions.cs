@@ -10,5 +10,6 @@ public static class ServiceCollectionExtensions
 		this IServiceCollection services,
 		Func<IServiceProvider, IDatabase> redisDatabaseResolver)
 		=> services
-		.AddTransient<IHangfireLock>(sp => ActivatorUtilities.CreateInstance<HangfireLock>(sp, redisDatabaseResolver(sp)));
+		.AddTransient<IHangfireUtensilRepository, HangfireUtensilRepository>()
+		.AddTransient<IHangfireLockRepository>(sp => ActivatorUtilities.CreateInstance<HangfireLockRepository>(sp, redisDatabaseResolver(sp)));
 }

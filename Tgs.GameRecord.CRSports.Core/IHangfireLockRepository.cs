@@ -1,6 +1,6 @@
 ﻿namespace Tgs.GameRecord.CRSports.Core;
 
-public interface IHangfireLock
+public interface IHangfireLockRepository
 {
 	Task<bool> LockingAsync(string application, CancellationToken cancellationToken = default);
 }
