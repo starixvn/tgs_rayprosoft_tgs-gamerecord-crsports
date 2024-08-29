@@ -40,7 +40,7 @@ internal class JobInitCommandService(
 					JsonSerializer.Serialize(new
 					{
 						LogOn = DateTime.Now.ToString("u"),
-						Message = "進行初始化動作，已經有其他服務進行。"
+						Message = "This game provider configuration schedule has been initialized."
 					}));
 				return;
 			}
@@ -134,7 +134,7 @@ internal class JobInitCommandService(
 				JsonSerializer.Serialize(new
 				{
 					LogOn = DateTime.Now.ToString("u"),
-					Message = "遊戲廠商初始化排程發生例外"
+					Message = "The game provider configuration schedule initialization failed."
 				}));
 		}
 		finally
